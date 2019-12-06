@@ -7,6 +7,8 @@ public class CGornerTableModel extends AbstractTableModel {
     private Double dFrom;
     private Double dTo;
     private Double dStep;
+    private Double dGorner;
+    private Float fGorner;
     
     public CGornerTableModel(Double from, Double to, Double step, Double[] coefficients) {
         this.dFrom = from;
@@ -27,18 +29,31 @@ public class CGornerTableModel extends AbstractTableModel {
         return dStep;
     }
     public int getColumnCount() {
-        return 2;
+        return 4;
     }
     public int getRowCount() {
         return new Double(Math.ceil((dTo - dFrom) / dStep)).intValue() + 1;
     }
     public Object getValueAt(int row, int col) {
-        double x = dFrom + dStep * row;
+        Double x = dFrom + dStep * row;
         if (col == 0) {
             return x;
-        } else {
-          Double result = 0.0;
-          return result;
+        } else if (col == 1) {
+          dGorner = dArrCoefficients[0];
+          for (int i = 1; i < dArrCoefficients.length; i++) {
+              dGorner = dGorner * x + dArrCoefficients[i];
+          }
+          return dGorner;
+        }
+        else if (col == 2) {
+            fGorner = dArrCoefficients[0].floatValue();
+            for (int i = 1; i < dArrCoefficients.length; i++) {
+                fGorner = x.floatValue() * fGorner + dArrCoefficients[i].floatValue();
+            }
+            return fGorner;
+        }
+        else {
+            return dGorner - fGorner;
         }
     }
     public String getColumnName(int col) {

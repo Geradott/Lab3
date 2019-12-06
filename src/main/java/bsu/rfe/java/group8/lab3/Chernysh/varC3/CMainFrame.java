@@ -150,6 +150,7 @@ public class CMainFrame extends JFrame {
                      table.setRowHeight(30);
                      hBoxResult.removeAll();
                      hBoxResult.add(new JScrollPane(table));
+                     getContentPane().validate(); 
                      saveToTextMenuItem.setEnabled(true);
                      saveToGraphicsMenuItem.setEnabled(true);
                      searchValueMenuItem.setEnabled(true);
@@ -194,6 +195,8 @@ public class CMainFrame extends JFrame {
                 for (int i = 0; i < data.getRowCount(); i++) {
                     out.writeDouble((Double)data.getValueAt(i,0));
                     out.writeDouble((Double)data.getValueAt(i,1));
+                    out.writeDouble((Double)data.getValueAt(i,2));
+                    out.writeDouble((Double)data.getValueAt(i,3));
                 }
                 out.close();
             }
