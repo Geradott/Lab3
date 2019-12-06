@@ -60,8 +60,12 @@ public class CGornerTableModel extends AbstractTableModel {
         switch(col) {
             case 0:
                 return "Value X";
+            case 1:
+                return "Value polinomial double";
+            case 2:
+                return "Value polinomial float";
             default:
-                return "Value polinomial";
+                return "Delta double and float";
         }
     }
     public Class<?> getColumnClass(int col) {

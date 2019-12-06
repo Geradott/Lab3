@@ -27,6 +27,7 @@ import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 
 public class CMainFrame extends JFrame {
     private static final int iWidth = 1080;
@@ -36,6 +37,7 @@ public class CMainFrame extends JFrame {
     private JMenuItem saveToTextMenuItem;
     private JMenuItem saveToGraphicsMenuItem;
     private JMenuItem searchValueMenuItem;
+    private JMenuItem infValueItem;
     private JTextField textFieldFrom;
     private JTextField textFieldTo;
     private JTextField textFieldStep;
@@ -75,6 +77,19 @@ public class CMainFrame extends JFrame {
         JMenu fileMenu = new JMenu("File");
         menuBar.add(fileMenu);
         JMenu tableMenu = new JMenu("Table");
+        menuBar.add(tableMenu);
+        JMenu aboutMenu = new JMenu("About");
+        menuBar.add(aboutMenu);
+        Action findInformationAction;
+        findInformationAction = new AbstractAction ("Information") {
+            public void actionPerformed(ActionEvent event) {
+                ImageIcon icon = new ImageIcon("C:\\Users\\ASUS-PC\\Documents\\Proga\\Java\\Problems\\3\\123.jpg");
+                JOptionPane.showMessageDialog(CMainFrame.this, "Ilya Chernysh 8 group", "Information", JOptionPane.INFORMATION_MESSAGE, icon);
+                getContentPane().repaint();
+            }
+        };
+        infValueItem = aboutMenu.add(findInformationAction);
+        infValueItem.setEnabled(true);
         Action saveToTextAction = new AbstractAction("Save text file") {
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser == null) {
