@@ -84,7 +84,7 @@ public class CMainFrame extends JFrame {
         
         Action findInformationAction = new AbstractAction ("Information") {
             public void actionPerformed(ActionEvent event) {
-                ImageIcon icon = new ImageIcon("C:\\Users\\ASUS-PC\\Documents\\Proga\\Java\\Problems\\3\\123.jpg");
+                ImageIcon icon = new ImageIcon("C:\\Users\\ASUS-PC\\Documents\\Proga\\Java\\Problems\\3\\Photo.jpg");
                 JOptionPane.showMessageDialog(CMainFrame.this, "Ilya Chernysh 8 group", "Information", JOptionPane.INFORMATION_MESSAGE, icon);
                 getContentPane().repaint();
             }
@@ -224,8 +224,6 @@ public class CMainFrame extends JFrame {
                 for (int i = 0; i < data.getRowCount(); i++) {
                     out.writeDouble((Double)data.getValueAt(i,0));
                     out.writeDouble((Double)data.getValueAt(i,1));
-                    out.writeDouble((Double)data.getValueAt(i,2));
-                    out.writeDouble((Double)data.getValueAt(i,3));
                 }
                 out.close();
             }
