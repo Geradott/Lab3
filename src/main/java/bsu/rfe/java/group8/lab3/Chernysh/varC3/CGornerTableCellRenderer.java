@@ -1,5 +1,6 @@
 package bsu.rfe.java.group8.lab3.Chernysh.varC3;
 
+import java.lang.StringBuilder;
 import java.awt.Color;
 import java.awt.Component;
 import java.awt.FlowLayout;
@@ -29,9 +30,15 @@ public class CGornerTableCellRenderer implements TableCellRenderer {
     
     public Component getTableCellRendererComponent(JTable table, Object value, boolean isSelected, boolean hasFocus, int row, int col) {
         String formattedDouble = formatter.format(value);
+        StringBuilder reversDouble = new StringBuilder();
+        reversDouble.append(formatter.format(value)).reverse();
         label.setText(formattedDouble);
-        if (col == 1 && sNeedle !=null && sNeedle.equals(formattedDouble)) {
+        
+        if (col == 1 && sNeedle != null && sNeedle.equals(formattedDouble)) {
             panel.setBackground(Color.RED);
+        }
+        else if (sNeedle != null && formattedDouble.equals(reversDouble.toString())) {
+            panel.setBackground(Color.PINK);
         }
         else {
             panel.setBackground(Color.WHITE);

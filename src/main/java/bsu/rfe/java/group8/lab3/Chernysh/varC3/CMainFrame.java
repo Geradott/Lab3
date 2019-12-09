@@ -38,6 +38,7 @@ public class CMainFrame extends JFrame {
     private JMenuItem saveToGraphicsMenuItem;
     private JMenuItem searchValueMenuItem;
     private JMenuItem infValueItem;
+    private JMenuItem searchPalindromeItem;
     private JTextField textFieldFrom;
     private JTextField textFieldTo;
     private JTextField textFieldStep;
@@ -80,8 +81,8 @@ public class CMainFrame extends JFrame {
         menuBar.add(tableMenu);
         JMenu aboutMenu = new JMenu("About");
         menuBar.add(aboutMenu);
-        Action findInformationAction;
-        findInformationAction = new AbstractAction ("Information") {
+        
+        Action findInformationAction = new AbstractAction ("Information") {
             public void actionPerformed(ActionEvent event) {
                 ImageIcon icon = new ImageIcon("C:\\Users\\ASUS-PC\\Documents\\Proga\\Java\\Problems\\3\\123.jpg");
                 JOptionPane.showMessageDialog(CMainFrame.this, "Ilya Chernysh 8 group", "Information", JOptionPane.INFORMATION_MESSAGE, icon);
@@ -90,6 +91,7 @@ public class CMainFrame extends JFrame {
         };
         infValueItem = aboutMenu.add(findInformationAction);
         infValueItem.setEnabled(true);
+        
         Action saveToTextAction = new AbstractAction("Save text file") {
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser == null) {
@@ -102,6 +104,7 @@ public class CMainFrame extends JFrame {
         };
         saveToTextMenuItem = fileMenu.add(saveToTextAction);
         saveToTextMenuItem.setEnabled(false);
+        
         Action saveToGraphicsAction = new AbstractAction("Save data for graphics") {
             public void actionPerformed(ActionEvent event) {
                 if (fileChooser == null) {
@@ -114,6 +117,7 @@ public class CMainFrame extends JFrame {
         };
         saveToGraphicsMenuItem = fileMenu.add(saveToGraphicsAction);
         saveToGraphicsMenuItem.setEnabled(false);
+        
         Action searchValueAction = new AbstractAction ("Find polinomial value") {
             public void actionPerformed(ActionEvent event) {
                 String value = JOptionPane.showInputDialog(CMainFrame.this, "Enter search value", "Search value", JOptionPane.QUESTION_MESSAGE);
@@ -123,6 +127,15 @@ public class CMainFrame extends JFrame {
         };
         searchValueMenuItem = tableMenu.add(searchValueAction);
         searchValueMenuItem.setEnabled(false);
+        
+        Action searchPalindromAction = new AbstractAction ("Find palindrom") {
+            public void actionPerformed(ActionEvent event) {
+                renderer.setNeedle("pal");
+                getContentPane().repaint();
+            }
+        };
+        searchPalindromeItem = tableMenu.add(searchPalindromAction);
+        searchPalindromeItem.setEnabled(false);
         
         JLabel labelForFrom = new JLabel ("X interval is:");
         textFieldFrom = new JTextField("0.0", 10);
@@ -169,6 +182,7 @@ public class CMainFrame extends JFrame {
                      saveToTextMenuItem.setEnabled(true);
                      saveToGraphicsMenuItem.setEnabled(true);
                      searchValueMenuItem.setEnabled(true);
+                     searchPalindromeItem.setEnabled(true);
                  }
                  catch (NumberFormatException ex) {
                      JOptionPane.showMessageDialog(CMainFrame.this, "Error in floating-point mathmatics", "Wrong number format", JOptionPane.WARNING_MESSAGE);
